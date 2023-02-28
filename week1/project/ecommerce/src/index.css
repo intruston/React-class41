@@ -206,7 +206,11 @@ summary {
 }
 
 .categories--item-selected {
-  background-color: #bdbdc1
+  background-color: #bdbdc1;
+  cursor: pointer;
+  font-weight: 700;
+  margin: 2px;
+  padding: 12px
 }
 
 .products {
