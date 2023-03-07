@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import CategoryAll from "./CategoryAll";
 import ProductList from "./ProductList";
+import Product from './Product';
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -22,6 +24,7 @@ function App() {
   };
 
   return (
+    <Router>
     <>
       <h1>Products</h1>
       <CategoryAll
@@ -29,8 +32,12 @@ function App() {
         selectedCategory={selectedCategory}
         categoryClick={categoryClick}
       />
-      <ProductList selectedCategory={selectedCategory} />
+    <Routes>
+        <Route path="/" element={<ProductList selectedCategory={selectedCategory} />} />
+        <Route path="/product/:id" element={<Product />} />
+    </Routes>
     </>
+    </Router>
   );
 }
 

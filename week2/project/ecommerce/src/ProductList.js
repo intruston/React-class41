@@ -1,4 +1,5 @@
 import React, { useState, useEffect }  from "react";
+import { Link } from "react-router-dom";
 
 function ProductList({ selectedCategory }) {
   const [products, setProducts] = useState([]);
@@ -15,7 +16,7 @@ function ProductList({ selectedCategory }) {
     fetch(url)
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Failed to fetch products");
+          throw new Error("Failed to fetch");
         }
         return response.json();
       })
@@ -30,7 +31,7 @@ function ProductList({ selectedCategory }) {
   }, [selectedCategory]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>Something is loading...</div>;
   }
 
   if (error) {
@@ -47,7 +48,7 @@ function ProductList({ selectedCategory }) {
             alt={product.id}
             src={product.image}
           ></img>
-          <span className="product--title">{product.title}</span>
+          <Link to={`/product/${product.id}`} className="product--title">{product.title}</Link>
         </div>
       </li>
     ))}
