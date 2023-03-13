@@ -1,19 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import useFetch from "./useFetch";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import CategoryAll from "./CategoryAll";
 import ProductList from "./ProductList";
-import Product from './Product';
+import Product from "./Product";
 
 function App() {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
 
+  const { data, isLoading, error } = useFetch(
+    "https://fakestoreapi.com/products/categories"
+  );
+
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products/categories")
-      .then((response) => response.json())
-      .then((json) => setCategories(json))
-      .catch((error) => console.error(error));
-  }, []);
+    if (data) {
+      setCategories(data);
+    }
+  }, [data]);
+
+  if (isLoading) {
+    return <div>Something is loading...</div>;
+  }
+
+  if (error) {
+    return <div>Sorry, we have an error: {error}</div>;
+  }
 
   const categoryClick = (category) => {
     if (selectedCategory === category) {
@@ -25,18 +37,23 @@ function App() {
 
   return (
     <Router>
-    <>
-      <h1>Products</h1>
-      <CategoryAll
-        categories={categories}
-        selectedCategory={selectedCategory}
-        categoryClick={categoryClick}
-      />
-    <Routes>
-        <Route path="/" element={<ProductList selectedCategory={selectedCategory} />} />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <h1>Products</h1>
+              <CategoryAll
+                categories={categories}
+                selectedCategory={selectedCategory}
+                categoryClick={categoryClick}
+              />
+              <ProductList selectedCategory={selectedCategory} />
+            </>
+          }
+        />
         <Route path="/product/:id" element={<Product />} />
-    </Routes>
-    </>
+      </Routes>
     </Router>
   );
 }
