@@ -113,13 +113,13 @@ textarea {
 }
 
 .product-image--favourite-container {
-  background-color: #fff;
+  background-color: transparent;
   cursor: pointer;
   height: 20px;
   padding: 8px;
   position: relative;
-  left: 80%;
-  top: -5%;
+  left: 90%;
+  top: -4%;
   width: 20px;
 }
 

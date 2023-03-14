@@ -5,6 +5,7 @@ import CategoryAll from "./CategoryAll";
 import ProductList from "./ProductList";
 import Product from "./Product";
 import FavouritesContext from "./FavouritesContext";
+import FavouriteList from "./FavouriteList";
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -67,20 +68,15 @@ function App() {
                   selectedCategory={selectedCategory}
                   categoryClick={categoryClick}
                 />
-                <ProductList selectedCategory={selectedCategory} />
+                <ProductList
+                  selectedCategory={selectedCategory}
+                  favourites={favourites}
+                />
               </>
             }
           />
           <Route path="/product/:id" element={<Product />} />
-          <Route
-            path="/favourites"
-            element={
-              <>
-                <h1>Favourites</h1>
-                <p>You have no favourites products yet.</p>
-              </>
-            }
-          />
+          <Route path="/favourites" element={<FavouriteList favourites={favourites} />} />
         </Routes>
       </FavouritesContext.Provider>
     </Router>

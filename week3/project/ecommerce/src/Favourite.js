@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import heartRegular from "./heart-regular.svg";
 import heartSolid from "./heart-solid.svg";
-import FavouritesContext from "./FavouritesContext";
 
 function Favourite({ productId, isFavourited, onClick }) {
   const handleClick = () => {
