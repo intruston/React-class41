@@ -68,15 +68,15 @@ function App() {
                   selectedCategory={selectedCategory}
                   categoryClick={categoryClick}
                 />
-                <ProductList
-                  selectedCategory={selectedCategory}
-                  favourites={favourites}
-                />
+                <ProductList selectedCategory={selectedCategory} />
               </>
             }
           />
           <Route path="/product/:id" element={<Product />} />
-          <Route path="/favourites" element={<FavouriteList favourites={favourites} />} />
+          <Route
+            path="/favourites"
+            element={<FavouriteList favourites={favourites} />}
+          />
         </Routes>
       </FavouritesContext.Provider>
     </Router>

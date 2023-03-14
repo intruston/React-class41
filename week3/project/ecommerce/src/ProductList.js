@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Favourite from "./Favourite";
 import FavouritesContext from "./FavouritesContext";
 
-function ProductList({ selectedCategory, favourites }) {
+function ProductList({ selectedCategory }) {
   let url = "https://fakestoreapi.com/products";
   if (selectedCategory) {
     url = "https://fakestoreapi.com/products/category/" + selectedCategory;
@@ -12,7 +12,7 @@ function ProductList({ selectedCategory, favourites }) {
 
   const { data, isLoading, error } = useFetch(url, [selectedCategory]);
   const products = data;
-  const { handleClick } = useContext(FavouritesContext);
+  const { favourites, handleClick } = useContext(FavouritesContext);
 
   if (isLoading) {
     return <div>Something is loading...</div>;

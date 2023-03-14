@@ -9,10 +9,7 @@ function Favourite({ productId, isFavourited, onClick }) {
 
   return (
     <div className="product-image--favourite-container" onClick={handleClick}>
-      <img
-        src={isFavourited ? heartSolid : heartRegular}
-        alt="Favourite"
-      />
+      <img src={isFavourited ? heartSolid : heartRegular} alt="Favourite" />
     </div>
   );
 }
