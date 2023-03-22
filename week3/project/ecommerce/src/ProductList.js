@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import useFetch from "./useFetch";
 import { Link } from "react-router-dom";
 import Favourite from "./Favourite";
-import FavouritesContext from "./FavouritesContext";
+import { FavouritesContext } from "./FavouritesContext";
 
 function ProductList({ selectedCategory }) {
   let url = "https://fakestoreapi.com/products";
@@ -10,7 +10,7 @@ function ProductList({ selectedCategory }) {
     url = "https://fakestoreapi.com/products/category/" + selectedCategory;
   }
 
-  const { data, isLoading, error } = useFetch(url, [selectedCategory]);
+  const { data, isLoading, error } = useFetch(url);
   const products = data;
   const { favourites, handleClick } = useContext(FavouritesContext);
 

@@ -14,8 +14,8 @@ function useFetch(url) {
         if (!response.ok) {
           throw new Error("Failed to fetch");
         }
-        const json = await response.json();
-        setData(json);
+        const data = await response.json();
+        setData(data);
       } catch (error) {
         setError(error.message);
       } finally {
